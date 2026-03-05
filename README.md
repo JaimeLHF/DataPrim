@@ -34,7 +34,7 @@ Aceita uploads manuais de XML, arquivos JSON, conexão direta com ERPs (Bling, T
 ---
 
 ### Layer 02 · DataForge — Normalization
-<img src="DataBridge/src/assets/DataForge-logo.png" width="250px" />
+<img src="DataForge/src/assets/DataForge-logo.png" width="250px" />
 
 Responsável por **processar e padronizar** os dados recebidos.
 Independente de onde vieram, todos os dados passam por aqui para serem transformados num formato único e consistente antes de serem armazenados.
@@ -42,7 +42,7 @@ Independente de onde vieram, todos os dados passam por aqui para serem transform
 ---
 
 ### Layer 03 · DataLumen — Analytics
-<img src="DataBridge/src/assets/DataLumen-logo.png" width="250px" />
+<img src="DataLumen/src/assets/DataLumen-logo.png" width="250px" />
 
 Responsável por **transformar os dados em visão estratégica**.
 É a camada que os clientes finais acessam — com dashboards, benchmarks, simuladores e relatórios para apoiar a tomada de decisão no setor de compras.
@@ -50,7 +50,7 @@ Responsável por **transformar os dados em visão estratégica**.
 ---
 
 ### Layer 04 · DataCore — Platform
-<img src="DataBridge/src/assets/DataCore-logo.png" width="250px" />
+<img src="DataCore/src/assets/DataCore-logo.png" width="250px" />
 
 Responsável pela **infraestrutura e administração da plataforma**.
 Gerencia usuários, empresas, permissões, configurações e toda a base que sustenta os demais módulos.
