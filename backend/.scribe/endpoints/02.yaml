@@ -1,0 +1,534 @@
+name: 'Dashboard & Análises'
+description: |-
+
+  Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+  Todos aceitam filtros opcionais de período (start_date, end_date).
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/kpis
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'KPIs principais'
+      description: 'Retorna indicadores-chave: TCO médio, variação vs mercado, peso do frete, categoria top e benchmark por categoria.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"overall_tco_average":52.3,"market_variation_percent":-3.5,"freight_weight_percent":8.2,"top_category":{"category":"MDF","total_value":45000.0},"benchmark_by_category":[{"category":"MDF","company_tco_avg":48.5,"market_tco_avg":50.2,"variation_percent":-3.4,"status":"below_market"}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/tco-breakdown
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Composição do TCO'
+      description: 'Retorna breakdown do TCO (preço unitário + frete + imposto) por categoria, empresa vs mercado.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"company":[{"category":"MDF","avg_unit_price":45.5,"avg_freight":3.2,"avg_tax":4.1,"tco_total":52.8}],"market":[{"category":"MDF","avg_unit_price":47.0,"avg_freight":3.5,"avg_tax":4.3,"tco_total":54.8}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/gross-vs-net
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Custo bruto vs líquido'
+      description: 'Retorna custo bruto, crédito tributário e custo líquido por categoria.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"category":"MDF","gross_cost":45000.0,"tax_credit":3825.0,"net_cost":41175.0,"credit_percent":8.5}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/price-evolution
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Evolução de preços'
+      description: 'Retorna evolução mensal de preços médios por categoria, incluindo curva de mercado.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      category:
+        custom: []
+        name: category
+        description: 'Filtrar por categoria específica.'
+        required: false
+        example: MDF
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      category: MDF
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"month":"2026-01","MDF":45.5,"Mercado MDF":47.0}],"categories":["MDF","Ferragens"],"market_categories":["Mercado MDF","Mercado Ferragens"]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/price-index
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Índice de preços'
+      description: 'Retorna índice percentual por período (base 100) para análise de sazonalidade.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      category:
+        custom: []
+        name: category
+        description: 'Filtrar por categoria específica.'
+        required: false
+        example: MDF
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      category: MDF
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"month":"2026-01","MDF":100,"Ferragens":100}],"categories":["MDF","Ferragens"]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/dispersion
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Dispersão de preços'
+      description: 'Retorna preço mínimo, médio e máximo por categoria, indicando variabilidade.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"category":"MDF","min_price":38.0,"avg_price":45.5,"max_price":58.0,"range":20.0}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/freight-impact
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Impacto do frete'
+      description: 'Retorna o peso percentual do frete no custo total por categoria.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"category":"MDF","total_invoiced":45000.0,"total_freight":3600.0,"freight_percent":8.0}],"overall_percent":7.5}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/dashboard/category-ranking
+    metadata:
+      custom: []
+      groupName: 'Dashboard & Análises'
+      groupDescription: |-
+
+        Endpoints de análise: KPIs, TCO, evolução de preços, dispersão, frete e ranking de categorias.
+        Todos aceitam filtros opcionais de período (start_date, end_date).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Ranking de categorias'
+      description: 'Retorna categorias ordenadas por valor total investido.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"rank":1,"category":"MDF","total_value":45000.0,"total_qty":1000,"items_count":15}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

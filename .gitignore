@@ -1,0 +1,65 @@
+# ============================================================
+# BACKEND — Laravel
+# ============================================================
+backend/.env
+backend/.env.backup
+backend/.env.production
+backend/vendor/
+backend/storage/logs/*.log
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+backend/storage/app/private/
+backend/bootstrap/cache/*.php
+backend/.phpunit.result.cache
+backend/.phpunit.cache/
+
+# ============================================================
+# FRONTEND — Node / Vite (todos os microfrontends)
+# ============================================================
+DataLumen/node_modules/
+DataLumen/dist/
+DataLumen/.env
+DataLumen/.env.local
+DataLumen/.env.*.local
+
+DataBridge/node_modules/
+DataBridge/dist/
+DataBridge/.env
+DataBridge/.env.local
+DataBridge/.env.*.local
+
+DataCore/node_modules/
+DataCore/dist/
+DataCore/.env
+DataCore/.env.local
+DataCore/.env.*.local
+
+DataForge/node_modules/
+DataForge/dist/
+DataForge/.env
+DataForge/.env.local
+DataForge/.env.*.local
+
+# ============================================================
+# SISTEMA OPERACIONAL
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# IDEs e Editores
+# ============================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+
+# ============================================================
+# MISC
+# ============================================================
+*.log
+*.zip
+*.tar.gz

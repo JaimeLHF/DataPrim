@@ -1,0 +1,239 @@
+name: 'Notas Fiscais'
+description: |-
+
+  Listagem, consulta e exclusão de notas fiscais importadas.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/invoices
+    metadata:
+      custom: []
+      groupName: 'Notas Fiscais'
+      groupDescription: |-
+
+        Listagem, consulta e exclusão de notas fiscais importadas.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar notas fiscais'
+      description: 'Retorna notas fiscais paginadas com filtros opcionais.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      supplier_id:
+        custom: []
+        name: supplier_id
+        description: 'Filtrar por fornecedor.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Data inicial (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Data final (YYYY-MM-DD).'
+        required: false
+        example: '2026-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      category:
+        custom: []
+        name: category
+        description: 'Filtrar por categoria de item.'
+        required: false
+        example: MDF
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Busca por número da nota ou nome do fornecedor.'
+        required: false
+        example: NF-001
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Itens por página (padrão: 15).'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      supplier_id: 1
+      start_date: '2026-01-01'
+      end_date: '2026-12-31'
+      category: MDF
+      search: NF-001
+      per_page: 15
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":1,"invoice_number":"NF-001","issue_date":"15/01/2026","supplier":"Fornecedor Exemplo","supplier_id":1,"total_value":5136.75,"freight_value":200.0,"tax_value":386.75,"items_count":2,"categories":["MDF","Ferragens"]}],"meta":{"current_page":1,"last_page":1,"per_page":15,"total":1}}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/invoices/{id}'
+    metadata:
+      custom: []
+      groupName: 'Notas Fiscais'
+      groupDescription: |-
+
+        Listagem, consulta e exclusão de notas fiscais importadas.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Detalhe de nota fiscal'
+      description: 'Retorna dados completos de uma nota fiscal com seus itens.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'ID da nota fiscal.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"id":1,"invoice_number":"NF-001","issue_date":"15/01/2026","supplier":"Fornecedor Exemplo","total_value":5136.75,"freight_value":200.0,"tax_value":386.75,"items":[{"id":1,"category":"MDF","product_description":"MDF 18mm Branco","quantity":100,"unit_price":45.5,"total_price":4550.0}]}'
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 404
+        content: '{"message":"No query results for model [App\\Models\\Invoice] 999"}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/invoices/{id}'
+    metadata:
+      custom: []
+      groupName: 'Notas Fiscais'
+      groupDescription: |-
+
+        Listagem, consulta e exclusão de notas fiscais importadas.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Excluir nota fiscal'
+      description: 'Remove a nota fiscal e todos os seus itens.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'ID da nota fiscal.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"message":"Nota fiscal excluída com sucesso."}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

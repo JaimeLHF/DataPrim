@@ -1,0 +1,73 @@
+name: Contatos
+description: |-
+
+  Gestão de contatos de fornecedores com análise de prazos de pagamento vs mercado.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/contacts
+    metadata:
+      custom: []
+      groupName: Contatos
+      groupDescription: |-
+
+        Gestão de contatos de fornecedores com análise de prazos de pagamento vs mercado.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar contatos'
+      description: 'Retorna fornecedores com dados de contato, categorias, prazos de pagamento e comparação com mercado.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      search:
+        custom: []
+        name: search
+        description: 'Busca por nome, contato, e-mail ou região.'
+        required: false
+        example: Madeiras
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      region:
+        custom: []
+        name: region
+        description: 'Filtrar por região.'
+        required: false
+        example: Sul
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      search: Madeiras
+      region: Sul
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"market_payment_terms":42,"data":[{"id":1,"name":"Fornecedor Exemplo","cnpj":"12345678000190","region":"Sul","state":"PR","contact_name":"João Silva","contact_email":"joao@fornecedor.com","contact_phone":"(41) 99999-0000","payment_terms":30,"market_payment_terms":42,"terms_delta":-12,"terms_status":"above_market","categories":["MDF","Ferragens"],"invoice_count":10,"total_purchased":50000.0}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

@@ -1,0 +1,51 @@
+name: Alertas
+description: |-
+
+  Alertas automáticos gerados pela análise de dados de compras.
+  Tipos: anomalia de preço, frete alto, alta consecutiva e concentração de fornecedor.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/alerts
+    metadata:
+      custom: []
+      groupName: Alertas
+      groupDescription: |-
+
+        Alertas automáticos gerados pela análise de dados de compras.
+        Tipos: anomalia de preço, frete alto, alta consecutiva e concentração de fornecedor.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar alertas'
+      description: 'Retorna alertas ordenados por severidade (high primeiro) e data.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"total":5,"high":2,"medium":3,"alerts":[{"type":"price_anomaly","severity":"high","title":"Preço acima da média — MDF","message":"MDF 18mm Branco comprado por R$ 65,00 (+42.9% acima da média histórica)","detail":"NF-e NF-001 · Fornecedor Exemplo · 15/01/2026","date":"2026-01-15"},{"type":"high_freight","severity":"medium","title":"Frete alto — Ferragens","message":"Impacto médio de 15.2% do frete no custo total desta categoria (8 notas)","detail":"Considere renegociar frete ou buscar fornecedores mais próximos","date":"2026-03-03"}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

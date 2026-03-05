@@ -1,0 +1,49 @@
+name: Empresas
+description: |-
+
+  Empresas vinculadas ao usuário autenticado.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/companies
+    metadata:
+      custom: []
+      groupName: Empresas
+      groupDescription: |-
+
+        Empresas vinculadas ao usuário autenticado.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar empresas'
+      description: 'Retorna todas as empresas ativas vinculadas ao usuário.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"data":[{"id":1,"name":"Móveis Ruiz","slug":"moveis-ruiz","plan":"professional","role":"owner"}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

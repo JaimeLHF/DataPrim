@@ -1,0 +1,163 @@
+name: Autenticação
+description: |-
+
+  Endpoints para login, logout e consulta do usuário autenticado.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/auth/login
+    metadata:
+      custom: []
+      groupName: Autenticação
+      groupDescription: |-
+
+        Endpoints para login, logout e consulta do usuário autenticado.
+      subgroup: ''
+      subgroupDescription: ''
+      title: Login
+      description: 'Autentica o usuário e retorna um token Bearer para uso nas demais requisições.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: 'E-mail do usuário.'
+        required: true
+        example: admin@moveisruiz.com.br
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'Senha do usuário.'
+        required: true
+        example: password
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: admin@moveisruiz.com.br
+      password: password
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"token":"1|abc123...","user":{"id":1,"name":"Admin Ruiz","email":"admin@moveisruiz.com.br"},"companies":[{"id":1,"name":"Móveis Ruiz","slug":"moveis-ruiz","plan":"professional","role":"owner"}]}'
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 401
+        content: '{"error":"Credenciais inválidas.","message":"E-mail ou senha incorretos."}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/auth/logout
+    metadata:
+      custom: []
+      groupName: Autenticação
+      groupDescription: |-
+
+        Endpoints para login, logout e consulta do usuário autenticado.
+      subgroup: ''
+      subgroupDescription: ''
+      title: Logout
+      description: 'Revoga o token atual do usuário.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/auth/me
+    metadata:
+      custom: []
+      groupName: Autenticação
+      groupDescription: |-
+
+        Endpoints para login, logout e consulta do usuário autenticado.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Usuário autenticado'
+      description: 'Retorna dados do usuário logado e suas empresas.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"user":{"id":1,"name":"Admin Ruiz","email":"admin@moveisruiz.com.br"},"companies":[{"id":1,"name":"Móveis Ruiz","slug":"moveis-ruiz","plan":"professional","role":"owner"}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

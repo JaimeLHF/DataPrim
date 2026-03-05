@@ -1,0 +1,422 @@
+name: 'Importação de Notas Fiscais'
+description: |-
+
+  Endpoints para importar NF-e via XML ou JSON canônico.
+  As importações são assíncronas — retornam 202 e o processamento ocorre em fila.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/invoices/preview-xml
+    metadata:
+      custom: []
+      groupName: 'Importação de Notas Fiscais'
+      groupDescription: |-
+
+        Endpoints para importar NF-e via XML ou JSON canônico.
+        As importações são assíncronas — retornam 202 e o processamento ocorre em fila.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Preview XML'
+      description: |-
+        Extrai e retorna dados do XML NF-e para visualização, sem persistir.
+        Este endpoint é síncrono.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      xml_file:
+        custom: []
+        name: xml_file
+        description: 'Arquivo XML NF-e modelo 55. Max 10MB.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters: []
+    fileParameters:
+      xml_file: null
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"invoice_number":"000123","issue_date":"15/01/2026","supplier":"Fornecedor Exemplo","supplier_cnpj":"12345678000190","supplier_region":"Sul","supplier_state":"PR","total_value":5136.75,"freight_value":200.0,"tax_value":386.75,"items_count":2,"items":[{"product_description":"MDF 18mm Branco","category":"MDF","quantity":100,"unit_price":45.5,"total_price":4550.0}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/invoices/import-xml
+    metadata:
+      custom: []
+      groupName: 'Importação de Notas Fiscais'
+      groupDescription: |-
+
+        Endpoints para importar NF-e via XML ou JSON canônico.
+        As importações são assíncronas — retornam 202 e o processamento ocorre em fila.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Importar XML'
+      description: |-
+        Recebe arquivo XML NF-e, salva na staging area (`raw_ingestions`) e enfileira processamento assíncrono.
+        Duplicatas (mesmo hash SHA-256) retornam 409.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      xml_file:
+        custom: []
+        name: xml_file
+        description: 'Arquivo XML NF-e modelo 55. Max 10MB.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters: []
+    fileParameters:
+      xml_file: null
+    responses:
+      -
+        custom: []
+        status: 202
+        content: '{"message":"XML recebido. Processamento iniciado.","ingestion_id":42,"status":"pending"}'
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 409
+        content: '{"message":"Este arquivo já foi recebido anteriormente.","ingestion_id":42,"status":"done"}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/invoices/import-json
+    metadata:
+      custom: []
+      groupName: 'Importação de Notas Fiscais'
+      groupDescription: |-
+
+        Endpoints para importar NF-e via XML ou JSON canônico.
+        As importações são assíncronas — retornam 202 e o processamento ocorre em fila.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Importar JSON (API Push)'
+      description: |-
+        Recebe notas fiscais no formato JSON canônico. Suporta batch (múltiplas notas por request).
+        Cada nota é salva individualmente na staging area e processada de forma assíncrona.
+        Duplicatas são detectadas por hash SHA-256 e retornadas com `skipped: true`.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+      X-Company-Id: '1'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      source:
+        custom: []
+        name: source
+        description: 'Identificador do sistema de origem.'
+        required: true
+        example: oracle_erp
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      invoices:
+        custom: []
+        name: invoices
+        description: 'Lista de notas fiscais.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'invoices[].invoice_number':
+        custom: []
+        name: 'invoices[].invoice_number'
+        description: 'Número da nota.'
+        required: true
+        example: NF-001
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].issue_date':
+        custom: []
+        name: 'invoices[].issue_date'
+        description: 'Data de emissão (YYYY-MM-DD).'
+        required: true
+        example: '2026-01-15'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].delivery_date':
+        custom: []
+        name: 'invoices[].delivery_date'
+        description: 'Data de entrega (YYYY-MM-DD).'
+        required: false
+        example: '2026-01-20'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'invoices[].payment_terms':
+        custom: []
+        name: 'invoices[].payment_terms'
+        description: 'Prazo de pagamento em dias.'
+        required: false
+        example: 30
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'invoices[].supplier':
+        custom: []
+        name: 'invoices[].supplier'
+        description: 'Dados do fornecedor.'
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'invoices[].supplier.cnpj':
+        custom: []
+        name: 'invoices[].supplier.cnpj'
+        description: 'CNPJ do fornecedor.'
+        required: true
+        example: '12345678000190'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].supplier.name':
+        custom: []
+        name: 'invoices[].supplier.name'
+        description: 'Nome do fornecedor.'
+        required: true
+        example: 'Fornecedor Exemplo'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].supplier.state':
+        custom: []
+        name: 'invoices[].supplier.state'
+        description: 'UF (2 letras).'
+        required: false
+        example: PR
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'invoices[].items':
+        custom: []
+        name: 'invoices[].items'
+        description: 'Itens da nota.'
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'invoices[].items[].description':
+        custom: []
+        name: 'invoices[].items[].description'
+        description: 'Descrição do produto.'
+        required: true
+        example: 'MDF 18mm Branco'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].items[].quantity':
+        custom: []
+        name: 'invoices[].items[].quantity'
+        description: Quantidade.
+        required: true
+        example: 100.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].items[].unit_price':
+        custom: []
+        name: 'invoices[].items[].unit_price'
+        description: 'Preço unitário.'
+        required: true
+        example: 45.5
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].items[].category':
+        custom: []
+        name: 'invoices[].items[].category'
+        description: 'Categoria do produto.'
+        required: false
+        example: MDF
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'invoices[].totals':
+        custom: []
+        name: 'invoices[].totals'
+        description: 'Totais da nota.'
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      'invoices[].totals.total':
+        custom: []
+        name: 'invoices[].totals.total'
+        description: 'Valor total.'
+        required: true
+        example: 5136.75
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'invoices[].totals.goods':
+        custom: []
+        name: 'invoices[].totals.goods'
+        description: 'Valor dos produtos.'
+        required: false
+        example: 4550.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'invoices[].totals.freight':
+        custom: []
+        name: 'invoices[].totals.freight'
+        description: 'Valor do frete.'
+        required: false
+        example: 200.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'invoices[].totals.tax':
+        custom: []
+        name: 'invoices[].totals.tax'
+        description: 'Valor dos impostos.'
+        required: false
+        example: 386.75
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      source: oracle_erp
+      invoices:
+        -
+          invoice_number: NF-001
+          issue_date: '2026-01-15'
+          delivery_date: '2026-01-20'
+          payment_terms: 30
+          supplier:
+            cnpj: '12345678000190'
+            name: 'Fornecedor Exemplo'
+            state: PR
+          items:
+            -
+              description: 'MDF 18mm Branco'
+              quantity: 100.0
+              unit_price: 45.5
+              category: MDF
+          totals:
+            total: 5136.75
+            goods: 4550.0
+            freight: 200.0
+            tax: 386.75
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 202
+        content: '{"message":"1 nota(s) recebida(s). Processamento iniciado.","ingestions":[{"invoice_number":"NF-001","ingestion_id":43,"status":"pending","skipped":false}]}'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
