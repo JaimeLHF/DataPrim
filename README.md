@@ -1,0 +1,81 @@
+# 🛒 Plataforma de Inteligência de Compras
+
+Uma plataforma SaaS voltada para gestão e análise estratégica do setor de compras de empresas brasileiras.
+
+A ideia é simples: centralizar as notas fiscais da empresa — vindas de ERPs, webhooks ou uploads manuais — e transformar esses dados em dashboards e comparativos que ajudam gestores a tomar decisões melhores na hora de comprar.
+
+---
+
+## O que a plataforma faz?
+
+- 📊 **Dashboards de compras** — visão geral de custos, fornecedores e categorias de produtos
+- 💰 **Saving & Cost Avoidance** — registro e acompanhamento de economias realizadas
+- 📈 **Benchmark de mercado** — compare sua estrutura de custo com outras empresas (de forma anônima)
+- 🔮 **Simulador What-If** — simule cenários e veja o impacto no custo antes de decidir
+- 🏭 **Gestão de fornecedores** — histórico, análise de preços e contatos comerciais
+- 🔔 **Alertas automáticos** — notificações sobre variações relevantes de preço
+- 🔗 **Integrações** — conecta com ERPs (Bling, TinyERP), recebe webhooks e aceita uploads de XML/JSON
+
+---
+
+## Estrutura do projeto
+
+O projeto é um monorepo com um backend e quatro aplicações frontend independentes, cada uma voltada para um público diferente:
+
+| Aplicação | Público | Porta |
+|---|---|---|
+| **DataLumen** | Clientes finais da plataforma | 5173 |
+| **DataBridge** | Time interno — integrações e conectores | 5175 |
+| **DataCore** | Time interno — administração geral | 5176 |
+| **DataForge** | Time interno — operacional | 5177 |
+
+```
+├── backend/        → API (PHP + Laravel)
+├── DataLumen/      → Frontend clientes
+├── DataBridge/     → Frontend integrações
+├── DataCore/       → Frontend admin
+└── DataForge/      → Frontend operacional
+```
+
+---
+
+## Como rodar localmente
+
+### Backend
+
+```bash
+cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve        # http://localhost:8000
+```
+
+### Frontend (exemplo com DataLumen — repita para os demais)
+
+```bash
+cd DataLumen
+npm install
+npm run dev              # http://localhost:5173
+```
+
+> As demais aplicações seguem o mesmo processo, cada uma na sua pasta e porta correspondente.
+
+---
+
+## Usuários para teste
+
+| Email | Acesso |
+|---|---|
+| `admin@primideias.com.br` | Administrador — acesso total |
+| `owner@moveis-ruiz.br` | Cliente — acesso ao DataLumen |
+| `owner@empresa-x.br` | Cliente — acesso ao DataLumen |
+
+> Senha de todos: `password`
+
+---
+
+## Status do projeto
+
+🟢 Em desenvolvimento ativo — funcionalidades principais implementadas, deploy ainda não configurado.
